@@ -1,25 +1,3 @@
-import os
-from telegram import Bot
-
-class TelegramNewsSender:
-    def __init__(self):
-        token = os.getenv('TELEGRAM_BOT_TOKEN')
-        self.channel_id = os.getenv('TELEGRAM_CHANNEL_ID')
-        self.bot = Bot(token)
-
-    def send(self, title, url):
-        message_text = f"*{title}*\n\n{url}"
-        
-        self.bot.send_message(
-            chat_id=self.channel_id,
-            text=message_text,
-        )
-
-
-
-###------
-
-
 import requests
 import os
 
