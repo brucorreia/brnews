@@ -5,7 +5,7 @@ from src.common.jsonconverter import StringToJsonConverter
 from src.repo.mongo import MongoDBInteractor
 from src.repo.messages import TelegramNewsSender
 
-class UolSpider(scrapy.Spider):
+class NewsSpider(scrapy.Spider):
     name = 'g1'
     start_urls = ['https://cnn.com.br']
 

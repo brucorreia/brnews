@@ -6,16 +6,16 @@ from src.repo.mongo import MongoDBInteractor
 from src.repo.messages import TelegramNewsSender
 
 class NewsSpider(scrapy.Spider):
-    name = 'uol'
-    start_urls = ['https://uol.com.br']
+    name = 'metropoles'
+    start_urls = ['https://www.metropoles.com/']
 
     def parse(self, response):
         logger = LoggerDefault()
         telegram_sender = TelegramNewsSender()
-        site = "uol.com.br"
+        site = "metropoles.com.br"
         try:
-            title = response.xpath('//article[contains(@class, "headlineMain section__grid__main__highlight__item")][1]/a/div/h3/text()').extract()[0].strip()
-            url = response.xpath('//article[contains(@class, "headlineMain section__grid__main__highlight__item")][1]/a/@href').extract()[0]
+            title = response.xpath('//*[@class="Text__TextBase-sc-1d75gww-0 IFscC noticia__titulo"]/a/@title').extract()[0].strip()
+            url = response.xpath('//*[@class="Text__TextBase-sc-1d75gww-0 IFscC noticia__titulo"]/a/@href').extract()[0]
             logger.register_info(f"Crawled from {site}, {title} {url}")
 
             converter = StringToJsonConverter()
